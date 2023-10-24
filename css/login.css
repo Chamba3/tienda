@@ -53,3 +53,14 @@ body {
 .login-button:hover {
     background-color: #166fe5;
 }
+
+.success-message {
+    color: #4CAF50;
+    margin: 20px 0;
+}
+
+.error-message {
+    color: #F44336;
+    margin: 20px 0;
+}
+
