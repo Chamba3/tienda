@@ -16,7 +16,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Considerando que ya tienes un archivo db.php con tu conexión
     require_once(__DIR__ . '/../connection/db.php');
 
-    // Aquí he adaptado la consulta a tu estructura de tabla
     $query = "SELECT id, contrasena FROM usuarios WHERE email = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("s", $email);
@@ -27,6 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bind_result($usuario_id, $contrasena_hash);
         $stmt->fetch();
 
+        // Verificar la contraseña ingresada con el hash almacenado
         if (password_verify($contrasena, $contrasena_hash)) {
             $_SESSION['usuario_id'] = $usuario_id;
             header("Location: catalogo.php"); // Redirigiendo a catalogo.php
@@ -37,11 +37,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         $error_message = "Usuario no encontrado. Regístrate si eres nuevo.";
     }
+    
+   $stmt->close(); 
+   $conn->close(); 
+    
+$contrasena = "holapa";
+$contrasena_hash = password_hash($contrasena, PASSWORD_DEFAULT);
 
-    $stmt->close();
-    $conn->close();
+// Actualiza la contraseña en la base de datos para el usuario "Maynol Sarmiento"
+// $query = "UPDATE usuarios SET contrasena = ? WHERE email = 'maynol@gmail.com'";
+//$stmt = $conn->prepare($query);
+//$stmt->bind_param("s", $contrasena_hash);
+//$stmt->execute();
+
+//$stmt->close();
+//$conn->close();
+
+//echo "Contraseña actualizada correctamente.";
+
 }
 ?>
+
 
 <!DOCTYPE html>
 <html>

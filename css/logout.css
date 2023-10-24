@@ -1,0 +1,22 @@
+/* ... otros estilos ... */
+
+.logout-button {
+    display: inline-block;
+    background-color: #f44336; /* Color rojo */
+    color: white;
+    padding: 10px 20px;
+    margin: 20px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 4px;
+}
+
+.logout-button:hover {
+    background-color: #d32f2f; /* Oscurecer el botón un poco cuando se pasa el mouse por encima */
+}
+
+

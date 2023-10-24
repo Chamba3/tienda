@@ -5,13 +5,38 @@ body {
     background-color: #f5f5f5;
 }
 
+/* Header Estilizado */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to right, #42265c, #39419c); /* Morado degradado */
+    padding: 0.5em 10%;
+    margin-bottom: 60px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: white;
+}
+
+.logout-link {
+    background-color: #ffffff;
+    color: #4a0df3;
+    padding: 5px 15px;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.logout-link:hover {
+    background-color: #f5f5f5;
+}
+
 h1 {
     text-align: center;
     margin-bottom: 20px;
     color: #4a0df3;
     font-size: 2.5em;
     padding: 1em 0;
-    background-color: #f5f5f5;
+    background-color: #f8f8f8; /* Color de fondo ligeramente más oscuro para h1 */
 }
 
 .catalogo-container {
@@ -19,15 +44,21 @@ h1 {
     flex-wrap: wrap;
     justify-content: space-between;
     padding: 0 10%;
+    gap: 20px; /* Espacio entre tarjetas */
 }
 
 .producto-card {
     flex-basis: calc(33.33% - 60px);
-    margin-bottom: 20px;
-    box-shadow: 0px 12px 15px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px; /* Aumentar el margen inferior */
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
     padding: 15px;
     border-radius: 9px;
     background-color: #ffffff;
+    transition: transform 0.3s; /* Añadir efecto suave */
+}
+
+.producto-card:hover {
+    transform: translateY(-10px); /* Efecto hover */
 }
 
 .producto-card img {
@@ -40,23 +71,26 @@ h1 {
 .producto-card h2 {
     margin-top: 14px;
     color: #4a0df3;
+    font-size: 1.2em; /* Aumentar tamaño de fuente */
 }
 
 .producto-card p {
     margin: 14px;
     color: #000000;
+    font-size: 0.9em; /* Ajustar tamaño de fuente para descripciones */
 }
 
 .producto-card a, .producto-card button {
     display: inline-block;
     margin-top: 9px;
-    padding: 8px 12px;
+    padding: 10px 16px; /* Aumentar padding */
     border: none;
     text-decoration: none;
     background-color: #4a0df3;
     color: white;
-    border-radius: 10px;
+    border-radius: 20px; /* Hacer bordes más redondeados */
     cursor: pointer;
+    transition: opacity 0.3s;
 }
 
 .producto-card button {
@@ -66,6 +100,45 @@ h1 {
 .producto-card a:hover, .producto-card button:hover {
     opacity: 0.8;
 }
+
+footer {
+    background-color: #4a0df3;
+    color: white;
+    padding: 1em 10%;
+    font-size: 0.9em;
+    position: relative;
+    bottom: 0;
+    width: auto;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.footer-content p {
+    margin: 10px 0;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.social-icons a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.5em;
+    transition: opacity 0.3s;
+}
+
+.social-icons a:hover {
+    opacity: 0.7;
+}
+
+
 
 
 
