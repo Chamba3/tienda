@@ -3,7 +3,7 @@
 <head>
 <div class="header">
 <img src="../images/logo.png" alt="imagen">
-    <a class="logout-link" href="logout.php">Cerrar Sesión</a>
+    <a class="logout-link" href="logout.php">cerrar sesión</a>
 </div>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,12 +24,11 @@
             while ($row = $result->fetch_assoc()) {
                 // Muestra cada producto en una tarjeta
                 echo "<div class='producto-card'>";
-                echo "<img src='images/" . $row['imagen'] . "' alt='" . $row['nombre'] . "'>";
+                echo '<img src="' . $row['url'] . '" alt="' . $row['nombre'] . '">';
                 echo "<h2>" . $row['nombre'] . "</h2>";
                 echo "<p>" . $row['descripcion'] . "</p>";
                 echo "<p>Precio: $" . $row['precio'] . "</p>";
                 echo "<p>Stock Disponible: " . $row['stock'] . "</p>";
-                echo "<a href='producto.php?id=" . $row['id'] . "'>Ver Detalles</a>";
                 echo "<button>Agregar al Carrito</button>";
                 echo "</div>";
             }
@@ -44,7 +43,7 @@
     </div>
     <footer>
     <div class="footer-content">
-        <p>&copy; 2023 Tienda en Línea. Todos los derechos reservados.</p>
+        <p>&copy; 2023 PhoneGear. Todos los derechos reservados.</p>
         <div class="social-icons">
             <a href="#"><i class="fa fa-facebook"></i></a>
             <a href="#"><i class="fa fa-twitter"></i></a>

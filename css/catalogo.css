@@ -10,7 +10,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: linear-gradient(to right, #42265c, #39419c); /* Morado degradado */
+    background: linear-gradient(to right, #5f2d8d, #3642af); /* Morado degradado */
     padding: 0.5em 10%;
     margin-bottom: 60px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -18,12 +18,13 @@ body {
 }
 
 .logout-link {
-    background-color: #ffffff;
-    color: #4a0df3;
-    padding: 5px 15px;
-    border-radius: 25px;
+    background-color: #fdfffd;
+    color:#4a0df3;
+    font-size: 1.2em; /* Aumentar tamaño de fuente */
+    padding: 8px 12px;
+    border-radius: 30px;
     text-decoration: none;
-    transition: background-color 0.3s;
+    transition: background-color 0.5s;
 }
 
 .logout-link:hover {
@@ -62,10 +63,11 @@ h1 {
 }
 
 .producto-card img {
-    max-width: 90%;
-    display: block;
-    margin: 0 auto;
-    border-radius: 5px;
+    width: 150px; /* o el ancho que desees */
+    height: 200px; /* o el alto que desees */
+    object-fit: cover; /* esto hará que las imágenes se ajusten manteniendo su relación de aspecto */
+    display: block; /* para eliminar espacios adicionales debajo de la imagen */
+    margin: 0 auto; /* para centrar la imagen horizontalmente en el contenedor */
 }
 
 .producto-card h2 {
