@@ -45,18 +45,22 @@ h1 {
     flex-wrap: wrap;
     justify-content: space-between;
     padding: 0 10%;
-    gap: 20px; /* Espacio entre tarjetas */
+    gap: 20px; 
 }
 
+
 .producto-card {
-    flex-basis: calc(33.33% - 60px);
-    margin-bottom: 40px; /* Aumentar el margen inferior */
     box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
     padding: 15px;
+    overflow: hidden; 
     border-radius: 9px;
+    height: 400px;
     background-color: #ffffff;
-    transition: transform 0.3s; /* Añadir efecto suave */
+    transition: transform 0.3s;
+    display: flex;
+    flex-direction: column;
 }
+
 
 .producto-card:hover {
     transform: translateY(-10px); /* Efecto hover */
@@ -68,18 +72,21 @@ h1 {
     object-fit: cover; /* esto hará que las imágenes se ajusten manteniendo su relación de aspecto */
     display: block; /* para eliminar espacios adicionales debajo de la imagen */
     margin: 0 auto; /* para centrar la imagen horizontalmente en el contenedor */
+    flex-grow: 1;
 }
 
 .producto-card h2 {
     margin-top: 14px;
     color: #4a0df3;
     font-size: 1.2em; /* Aumentar tamaño de fuente */
+    flex-grow: 1;
 }
 
 .producto-card p {
     margin: 14px;
     color: #000000;
     font-size: 0.9em; /* Ajustar tamaño de fuente para descripciones */
+    flex-grow: 1;
 }
 
 .producto-card a, .producto-card button {
@@ -97,6 +104,10 @@ h1 {
 
 .producto-card button {
     background-color: #4a0df3;
+    flex-grow: 0;
+    font-size: 1em; /* Aumentar tamaño de fuente */
+    padding: 6px 6px;
+    border-radius: 30px;
 }
 
 .producto-card a:hover, .producto-card button:hover {
@@ -139,6 +150,71 @@ footer {
 .social-icons a:hover {
     opacity: 0.7;
 }
+
+/* Estilo para el formulario de búsqueda */
+.header form {
+    display: flex;
+    gap: 10px; /* Espacio entre el campo de texto y el botón */
+}
+
+/* Estilo para el campo de texto de búsqueda */
+.header form input[type="text"] {
+    padding: 8px 12px;
+    border-radius: 30px;
+    border: none; /* Quitar borde */
+    outline: none; /* Quitar outline al hacer foco */
+    font-size: 1.2em;
+    transition: box-shadow 0.3s;
+}
+
+.header form input[type="text"]:focus {
+    box-shadow: 0 0 5px #4a0df3; /* Añadir un ligero resplandor al hacer foco */
+}
+
+/* Estilo para el botón de búsqueda */
+.header form input[type="submit"] {
+    background-color: #fdfffd;
+    color: #4a0df3;
+    font-size: 1.2em;
+    padding: 8px 12px;
+    border-radius: 30px;
+    border: none; /* Quitar borde */
+    cursor: pointer; /* Cambiar cursor a mano */
+    transition: background-color 0.5s;
+}
+
+.header form input[type="submit"]:hover {
+    background-color: #f5f5f5;
+}
+
+.producto-link {
+    flex-basis: calc(33.33% - 60px);
+    margin-bottom: 40px; 
+    display: block; 
+    text-decoration: none;
+    color: inherit;
+}
+
+
+
+/* para volver al catalogo */
+.btn {
+    background-color: #fdfffd;
+    color:#4a0df3;
+    font-size: 1.2em; /* Tamaño de fuente ajustado */
+    padding: 8px 12px;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: background-color 0.5s;
+    border: none; /* Quitar borde */
+    cursor: pointer; /* Cambiar cursor a mano */
+    margin: 0 5px; /* Espacio entre botones */
+}
+
+.btn:hover {
+    background-color: #f5f5f5;
+}
+
 
 
 
