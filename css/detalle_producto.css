@@ -157,9 +157,51 @@ footer {
     /* ... tus otros estilos ... */
 }
 
+.carrito-btn {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #333;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    
+    /* Estilos para hacerlo flotante y ubicarlo abajo a la derecha */
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+}
 
+.carrito-cantidad {
+    background-color: red;
+    border-radius: 50%;
+    padding: 2px 6px;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    font-size: 12px;
+}
 
+.btn-volver {
+    display: inline-block;
+    background: linear-gradient(to right, #5f2d8d, #3642af);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 4px;
+    text-decoration: none;
+    margin-bottom: 20px;
+    transition: background-color 0.3s;
+    margin-left: 20px;
+}
 
+.btn-volver:hover {
+    background-color: #555;
+}
+
+.btn-volver i {
+    margin-right: 5px;
+}
 
 
 

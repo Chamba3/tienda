@@ -10,7 +10,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: linear-gradient(to right, #5f2d8d, #3642af); /* Morado degradado */
+    background: linear-gradient(to right, #5f2d8d, #3642af);
     padding: 0.5em 10%;
     margin-bottom: 60px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -59,6 +59,7 @@ h1 {
     transition: transform 0.3s;
     display: flex;
     flex-direction: column;
+    position: relative;
 }
 
 
@@ -115,7 +116,7 @@ h1 {
 }
 
 footer {
-    background-color: #4a0df3;
+    background: linear-gradient(to right, #5f2d8d, #3642af);
     color: white;
     padding: 1em 10%;
     font-size: 0.9em;
@@ -151,6 +152,15 @@ footer {
     opacity: 0.7;
 }
 
+.social-icons a {
+    margin-right: 10px; /* Esto añade un margen a la derecha de cada enlace */
+}
+
+.social-icons a:last-child {
+    margin-right: 0; /* Esto asegura que el último ícono no tenga margen a la derecha */
+}
+
+
 /* Estilo para el formulario de búsqueda */
 .header form {
     display: flex;
@@ -159,12 +169,13 @@ footer {
 
 /* Estilo para el campo de texto de búsqueda */
 .header form input[type="text"] {
-    padding: 8px 12px;
+    padding: 10px 100px;
     border-radius: 30px;
     border: none; /* Quitar borde */
     outline: none; /* Quitar outline al hacer foco */
     font-size: 1.2em;
     transition: box-shadow 0.3s;
+    width: 100%;
 }
 
 .header form input[type="text"]:focus {
@@ -195,8 +206,6 @@ footer {
     color: inherit;
 }
 
-
-
 /* para volver al catalogo */
 .btn {
     background-color: #fdfffd;
@@ -215,9 +224,73 @@ footer {
     background-color: #f5f5f5;
 }
 
+.producto-cantidad {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 5px 10px;
+    font-weight: bold;
+    display: none; /* Oculta la cantidad por defecto */
+}
 
+.producto-card:hover .producto-cantidad {
+    display: block; /* Muestra la cantidad cuando se pasa el puntero sobre el producto */
+}
 
+.carrito-btn {
+    display: inline-block;
+    padding: 10px 15px;
+    background-color: #333;
+    border-radius: 5px;
+    color: white;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    
+    /* Estilos para hacerlo flotante y ubicarlo abajo a la derecha */
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+}
 
+.carrito-cantidad {
+    background-color: red;
+    border-radius: 50%;
+    padding: 2px 6px;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    font-size: 12px;
+}
 
+.carrito-btn:hover {
+    background-color: #555;
+}
 
+.carrito-btn i {
+    font-size: 20px;
+}
+
+.btn-volver {
+    display: inline-block;
+    background: linear-gradient(to right, #5f2d8d, #3642af);
+    color: white;
+    padding: 10px 15px;
+    border-radius: 4px;
+    text-decoration: none;
+    margin-bottom: 20px;
+    transition: background-color 0.3s;
+    margin-left: 20px;
+}
+
+.btn-volver:hover {
+    background-color: #555;
+}
+
+.btn-volver i {
+    margin-right: 5px;
+}
 
