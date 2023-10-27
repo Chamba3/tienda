@@ -10,16 +10,16 @@
 
     <?php
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        // Procesa el formulario de pago y realiza la transacción
+        // Procesa el formulario de pago y realiza la transacción.
         $nombre_en_tarjeta = $_POST['nombre_en_tarjeta'];
         $numero_tarjeta = $_POST['numero_tarjeta'];
         $vencimiento_tarjeta = $_POST['vencimiento_tarjeta'];
 
-        // Aquí debes implementar la lógica para procesar el pago y registrar la compra
-        // Asegúrate de utilizar una pasarela de pago segura o un servicio de pago en línea
+        // Aquí debes implementar la lógica para procesar el pago y registrar la compra.
+        // Asegúrate de utilizar una pasarela de pago segura o un servicio de pago en línea.
         // y de que los datos de pago se almacenen de forma segura.
 
-        // Después de procesar el pago con éxito, puedes mostrar un mensaje de confirmación
+        // Después de procesar el pago con éxito, puedes mostrar un mensaje de confirmación.
         echo "<p>¡Compra exitosa! Se ha procesado su pago.</p>";
     } else {
         // Muestra el formulario de pago

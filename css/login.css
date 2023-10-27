@@ -64,3 +64,33 @@ body {
     margin: 20px 0;
 }
 
+
+/* Ajustes para el formulario de registro dentro de login.css */
+
+.input-group input {
+    width: 90%;  /* Cambio para que los campos de entrada ocupen toda la anchura disponible */
+    padding: 12px;  /* Aumento del padding para un mejor aspecto visual */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+/* Estilos para el enlace de registro (puedes poner esto en registro.css o login.css, según prefieras) */
+
+.register-link {
+    display: block;
+    margin: 20px 0;
+    text-align: center;
+    text-decoration: none;
+    color: #4a0df3;
+    font-size: 16px;
+    padding: 10px 0;  /* Ajuste del padding para que no sea demasiado grande */
+}
+
+.register-link:hover {
+    text-decoration: underline;
+    background-color: #f0f2f5;
+}
+
+
+

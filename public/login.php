@@ -13,7 +13,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $contrasena = $_POST['contrasena'];
 
-    // Considerando que ya tienes un archivo db.php con tu conexión
     require_once(__DIR__ . '/../connection/db.php');
 
     $query = "SELECT id, contrasena FROM usuarios WHERE email = ?";
@@ -26,10 +25,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bind_result($usuario_id, $contrasena_hash);
         $stmt->fetch();
 
-        // Verificar la contraseña ingresada con el hash almacenado
+        // Comparar la contraseña ingresada con la almacenada
         if (password_verify($contrasena, $contrasena_hash)) {
             $_SESSION['usuario_id'] = $usuario_id;
-            header("Location: catalogo.php"); // Redirigiendo a catalogo.php
+            header("Location: catalogo.php");
             exit;
         } else {
             $error_message = "Contraseña incorrecta. Inténtalo de nuevo.";
@@ -38,26 +37,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error_message = "Usuario no encontrado. Regístrate si eres nuevo.";
     }
     
-   $stmt->close(); 
-   $conn->close(); 
     
-$contrasena = "holapa";
-$contrasena_hash = password_hash($contrasena, PASSWORD_DEFAULT);
-
-// Actualiza la contraseña en la base de datos para el usuario "Maynol Sarmiento"
-// $query = "UPDATE usuarios SET contrasena = ? WHERE email = 'maynol@gmail.com'";
-//$stmt = $conn->prepare($query);
-//$stmt->bind_param("s", $contrasena_hash);
-//$stmt->execute();
-
-//$stmt->close();
-//$conn->close();
-
-//echo "Contraseña actualizada correctamente.";
-
+    $stmt->close(); 
+    $conn->close(); 
 }
 ?>
 
+<!-- El código HTML permanece igual -->
 
 <!DOCTYPE html>
 <html>
@@ -82,6 +68,8 @@ $contrasena_hash = password_hash($contrasena, PASSWORD_DEFAULT);
                     <input type='password' id='contrasena' name='contrasena' placeholder='Contraseña' required>
                 </div>
                 <button class='login-button' type='submit'>Iniciar Sesión</button>
+                <a href="registro.php" class="register-link">Regístrate si no posees una cuenta</a>
+
             </form>
         </div>
     </div>

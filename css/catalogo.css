@@ -8,20 +8,28 @@ body {
 /* Header Estilizado */
 .header {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: space-between; /* Alinea los elementos horizontalmente de extremo a extremo */
+    align-items: center; /* Alinea los elementos verticalmente en el centro */
     background: linear-gradient(to right, #5f2d8d, #3642af);
     padding: 0.5em 10%;
-    margin-bottom: 60px;
+    margin-bottom: 50px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     color: white;
 }
+.header form,
+.logout-link {
+    margin: 0;
+    padding: 0; 
+}
+
+
 
 .logout-link {
+    width: 10%;  
     background-color: #fdfffd;
     color:#4a0df3;
     font-size: 1.2em; /* Aumentar tamaño de fuente */
-    padding: 8px 12px;
+    padding: 8px 10px;
     border-radius: 30px;
     text-decoration: none;
     transition: background-color 0.5s;
@@ -169,13 +177,12 @@ footer {
 
 /* Estilo para el campo de texto de búsqueda */
 .header form input[type="text"] {
-    padding: 10px 100px;
+    padding: 8px 12px;
     border-radius: 30px;
     border: none; /* Quitar borde */
     outline: none; /* Quitar outline al hacer foco */
     font-size: 1.2em;
     transition: box-shadow 0.3s;
-    width: 100%;
 }
 
 .header form input[type="text"]:focus {
@@ -192,6 +199,10 @@ footer {
     border: none; /* Quitar borde */
     cursor: pointer; /* Cambiar cursor a mano */
     transition: background-color 0.5s;
+}
+
+.header form input[type="submit"]:hover {
+    background-color: #f5f5f5;
 }
 
 .header form input[type="submit"]:hover {
@@ -293,4 +304,8 @@ footer {
 .btn-volver i {
     margin-right: 5px;
 }
+
+
+
+
 
