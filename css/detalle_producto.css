@@ -4,11 +4,12 @@ body {
     padding: 0;
     background-color: #f5f5f5;
 }
+
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: linear-gradient(to right, #5f2d8d, #3642af); /* Morado degradado */
+    background: linear-gradient(to right, #5f2d8d, #3642af);
     padding: 0.5em 10%;
     margin-bottom: 60px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -201,6 +202,81 @@ footer {
 
 .btn-volver i {
     margin-right: 5px;
+}
+/* For small devices (less than 768px wide) */
+@media (max-width: 767px) {
+    .header {
+        flex-direction: column;
+        padding: 1em;
+    }
+
+    .header form {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .header form input[type="text"],
+    .header form input[type="submit"] {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    .product-detail-container {
+        flex-direction: column;
+        padding: 1em;
+    }
+
+    .product-image img {
+        width: 100%; /* Full width */
+        height: auto;
+    }
+
+    .product-info {
+        padding: 1em 0;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .social-icons {
+        justify-content: center;
+        margin: 1em 0;
+    }
+
+    .carrito-btn {
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        width: calc(100% - 20px); /* Full width minus the padding */
+    }
+
+    .btn-volver {
+        margin: 1em 10px;
+    }
+}
+
+/* For medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {
+    .product-detail-container {
+        padding: 2em;
+    }
+
+    .product-info {
+        padding-left: 20px;
+    }
+}
+
+/* For large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    .product-detail-container {
+        justify-content: space-between;
+    }
+
+    .product-info {
+        padding-left: 40px;
+    }
 }
 
 

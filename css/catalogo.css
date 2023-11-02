@@ -8,21 +8,35 @@ body {
 /* Header Estilizado */
 .header {
     display: flex;
-    justify-content: space-between; /* Alinea los elementos horizontalmente de extremo a extremo */
-    align-items: center; /* Alinea los elementos verticalmente en el centro */
+    justify-content: space-between;
+    align-items: center;
     background: linear-gradient(to right, #5f2d8d, #3642af);
-    padding: 0.5em 10%;
+    padding: 0.5em 5%; /* Padding responsive */
     margin-bottom: 50px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     color: white;
 }
+
+/* Pequeños dispositivos (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+    .header {
+      padding: 0.5em 5%;
+    }
+  
+    .logout-link {
+      width: auto; /* Ancho auto para ajustar el tamaño del botón */
+    }
+  
+    .producto-card img {
+      width: auto; /* Ancho auto para imágenes */
+      height: auto; /* Altura auto para imágenes */
+    }
+  }
 .header form,
 .logout-link {
     margin: 0;
     padding: 0; 
 }
-
-
 
 .logout-link {
     width: 10%;  
@@ -305,6 +319,25 @@ footer {
     margin-right: 5px;
 }
 
+@media (min-width: 768px) {
+    .producto-link {
+      flex-basis: calc(50% - 40px); /* Ajustar para 2 columnas */
+    }
+  }
+  
+  /* Tabletas en modo landscape y desktops (992px and up) */
+  @media (min-width: 992px) {
+    .producto-link {
+      flex-basis: calc(33.33% - 40px); /* Ajustar para 3 columnas */
+    }
+  }
+  
+  /* Pantallas grandes (large desktops, 1200px and up) */
+  @media (min-width: 1200px) {
+    .producto-link {
+      flex-basis: calc(25% - 40px); /* Ajustar para 4 columnas */
+    }
+  }
 
 
 

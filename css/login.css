@@ -10,6 +10,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    padding: 20px; /* Added padding for smaller screens */
 }
 
 .login-box {
@@ -18,7 +19,9 @@ body {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     padding: 20px;
     text-align: center;
-    width: 300px;
+    width: 100%; /* Full width on small screens */
+    max-width: 300px; /* Maximum width to ensure the box does not stretch too much on larger screens */
+    margin: 0 10px; /* Added margin for smaller screens */
 }
 
 .login-box h2 {
@@ -92,5 +95,24 @@ body {
     background-color: #f0f2f5;
 }
 
+@media (min-width: 768px) {
+    .login-container {
+        padding: 0; /* Remove padding on larger screens */
+    }
+
+    .login-box {
+        margin: 0; /* Remove margin on larger screens */
+    }
+
+    /* Adjust the width of the input fields on larger screens if necessary */
+    .input-group input {
+        width: calc(100% - 24px); /* Adjust width to account for padding */
+    }
+}
+
+/* For large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    /* If you want to make any specific changes for larger desktop screens, add them here */
+}
 
 

@@ -166,3 +166,48 @@
     align-items: center;
     width: 100%;
 }
+
+/* Responsive Styles */
+@media only screen and (max-width: 768px) {
+    /* For tablets and smaller devices */
+    table {
+        width: 100%; /* Full width */
+        margin: 20px 0; /* Reduced margin */
+    }
+
+    .carrito-vacio {
+        width: 80%; /* Slightly larger width for smaller screens */
+    }
+
+    button,
+    .btn-volver {
+        width: auto; /* Auto width for smaller screens */
+        padding: 10px; /* Uniform padding */
+    }
+
+    .eliminar-form input[type="number"],
+    .eliminar-form input[type="submit"] {
+        width: auto; /* Auto width for smaller screens */
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    /* For mobile phones */
+    h1 {
+        padding: 20px 10px; /* Reduced padding for smaller screens */
+        font-size: 24px; /* Smaller font size for h1 */
+    }
+
+    .carrito-vacio {
+        width: 90%; /* Even larger width for very small screens */
+        font-size: 18px; /* Smaller font size for carrito vacio message */
+    }
+
+    .carrito-vacio-img {
+        width: 80%; /* Reduce image width to fit smaller screens */
+    }
+
+    .paypal-center {
+        flex-direction: column; /* Stack PayPal elements on smaller screens */
+    }
+}

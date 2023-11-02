@@ -11,10 +11,12 @@ body {
     color: white;
     padding: 10px 0;
     text-align: center;
+    position: relative; /* Agregado para posicionar correctamente el logout-link */
 }
 
 .header img {
-    max-width: 150px;
+    max-width: 100%; /* Cambiado para ser responsive */
+    height: auto; /* Asegura que la imagen no se deforme */
 }
 
 .logout-link {
@@ -34,7 +36,7 @@ body {
 }
 
 .content {
-    max-width: 600px;
+    max-width: 90%; /* Cambiado para ser responsive */
     margin: 50px auto;
     padding: 20px;
     background-color: white;
@@ -76,3 +78,41 @@ body {
 .social-icons i {
     font-size: 24px;
 }
+
+/* Media queries */
+
+/* Para dispositivos con pantalla pequeña (menos de 768px) */
+@media (max-width: 767px) {
+    .header img {
+        width: 120px; /* Imagen más pequeña para pantallas pequeñas */
+    }
+
+    .content, .footer-content {
+        max-width: 100%; /* Aprovecha todo el ancho en dispositivos pequeños */
+        box-shadow: none; /* Opcional: elimina la sombra para un look más limpio */
+    }
+
+    .logout-link {
+        top: 5px;
+        right: 5px;
+        padding: 5px; /* Ajusta el padding para dispositivos pequeños */
+    }
+
+    .btn {
+        padding: 10px; /* Botones más pequeños para pantallas pequeñas */
+    }
+
+    .social-icons i {
+        font-size: 20px; /* Iconos más pequeños para pantallas pequeñas */
+    }
+}
+
+/* Para dispositivos medianos (tablets, entre 768px y 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+    .header img {
+        width: 140px; /* Tamaño de imagen ajustado para tablets */
+    }
+
+    /* Otros ajustes estilísticos si son necesarios */
+}
+
