@@ -1,3 +1,4 @@
+
 body {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
@@ -8,30 +9,23 @@ body {
 /* Header Estilizado */
 .header {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     background: linear-gradient(to right, #5f2d8d, #3642af);
     padding: 0.5em 5%; /* Padding responsive */
-    margin-bottom: 50px;
+    margin-bottom: 0;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     color: white;
+    position: relative; /* Asegúrate de que el header tenga position relative */
+    z-index: 10; /* Esto es para que el header se mantenga sobre la toolbar al hacer scroll */
 }
 
-/* Pequeños dispositivos (landscape phones, 576px and up) */
-@media (min-width: 576px) {
-    .header {
-      padding: 0.5em 5%;
-    }
-  
-    .logout-link {
-      width: auto; /* Ancho auto para ajustar el tamaño del botón */
-    }
-  
-    .producto-card img {
-      width: auto; /* Ancho auto para imágenes */
-      height: auto; /* Altura auto para imágenes */
-    }
-  }
+.header img {
+    max-width: 100%;
+    height: auto;
+}
+
 .header form,
 .logout-link {
     margin: 0;
@@ -47,11 +41,21 @@ body {
     border-radius: 30px;
     text-decoration: none;
     transition: background-color 0.5s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .logout-link:hover {
     background-color: #f5f5f5;
 }
+
+.logout-icon {
+    display: inline-block; /* O 'block' si quieres que el ícono esté solo */
+    vertical-align: middle; /* Alinea verticalmente el ícono con el texto */
+    margin-right: 0.5em; /* Espacio entre el ícono y el texto */
+}
+
 
 h1 {
     text-align: center;
@@ -62,12 +66,63 @@ h1 {
     background-color: #f8f8f8; /* Color de fondo ligeramente más oscuro para h1 */
 }
 
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 50px; /* Ajusta el padding según sea necesario */
+    background-color: #673ab7; /* Un color de fondo a juego con tu tema */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Una sombra sutil para dar profundidad */
+    z-index: 5; /* Menor que el header para que quede debajo */
+}
+
+.toolbar-btn {
+    padding: 10px 90px;
+    text-decoration: none;
+    color: white; /* El color del texto para que contraste con el fondo */
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.toolbar-btn:hover {
+    background-color: #7e57c2; /* Un color ligeramente más claro para el efecto hover */
+}
+
+
+.categorias-container {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    background-color: #f4f4f4; /* Color de fondo */
+    
+}
+
+.toolbar-btn.active {
+    background-color: #7e57c2; /* Color de fondo para la categoría activa */
+    color: white; /* Color del texto para la categoría activa */
+}
+
+
+.categoria-btn {
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #333; /* Color del texto */
+    background-color: #ddd; /* Color de fondo del botón */
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.categoria-btn:hover {
+    background-color: #ccc; /* Color de fondo al pasar el mouse */
+}
+
+
 .catalogo-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     padding: 0 10%;
     gap: 20px; 
+    padding-top: 40px;
 }
 
 
@@ -89,6 +144,16 @@ h1 {
     transform: translateY(-10px); /* Efecto hover */
 }
 
+@keyframes flip {
+    0%, 100% {
+        transform: rotateY(0deg);
+    }
+    50% {
+        transform: rotateY(180deg);
+    }
+}
+
+
 .producto-card img {
     width: 150px; /* o el ancho que desees */
     height: 200px; /* o el alto que desees */
@@ -96,7 +161,12 @@ h1 {
     display: block; /* para eliminar espacios adicionales debajo de la imagen */
     margin: 0 auto; /* para centrar la imagen horizontalmente en el contenedor */
     flex-grow: 1;
+
+    /* Animación */
+    animation: flip 15s infinite;
 }
+
+
 
 .producto-card h2 {
     margin-top: 14px;
@@ -128,8 +198,8 @@ h1 {
 .producto-card button {
     background-color: #4a0df3;
     flex-grow: 0;
-    font-size: 1em; /* Aumentar tamaño de fuente */
-    padding: 6px 6px;
+    font-size: 1rem; /* Aumentar tamaño de fuente */
+    padding: 0.6rem 1rem; /* Padding inicial */
     border-radius: 30px;
 }
 
@@ -319,10 +389,119 @@ footer {
     margin-right: 5px;
 }
 
+@media (max-width: 576px) {
+    .logout-link {
+        font-size: 0.8em; /* Reducir tamaño de fuente */
+        padding: 2px; /* Reducir padding */
+        width: auto; /* Ajustar ancho */
+    }
+    
+    .catalogo-container {
+        padding: 20px; /* Elimina el padding para que las tarjetas puedan extenderse completamente */
+    }
+
+    .producto-link {
+        flex-basis: 100%; /* Asegúrate de que las tarjetas tomen todo el ancho */
+        margin: 0; /* Elimina los márgenes externos */
+    }
+
+    .producto-card {
+        margin: 0; /* Elimina los márgenes externos */
+        padding: 5px; /* Elimina el padding interno para permitir que el contenido use todo el ancho */
+        height: auto; /* Permite que la altura se ajuste al contenido */
+        box-shadow: none; /* Opcional: elimina la sombra si deseas que las tarjetas sean planas */
+    }
+
+    .producto-card img {
+        width: 100%; /* Asegúrate de que la imagen se ajuste al contenedor */
+        height: auto; /* Mantiene la relación de aspecto de la imagen */
+        object-fit: cover; /* Esto mantendrá la relación de aspecto incluso si cambias el tamaño de la imagen */
+    }
+    
+    /* Ajustes similares para otros elementos del header */
+}
+
+
+/* Header Estilizado para dispositivos pequeños */
+@media (max-width: 576px) {
+    .header {
+        padding: 0.5em 2%; /* Reducir el padding del contenedor del header */
+        justify-content: flex-start; /* Alinear los elementos al inicio para evitar centrado forzado */
+        flex-direction: row; /* Asegurar que todos los elementos estén en la misma fila */
+    }
+
+    .header form,
+    .logout-link {
+        flex: 1; /* Dar a cada elemento la capacidad de crecer */
+        margin-right: 10px; /* Añadir un margen a la derecha para separar los elementos */
+    }
+
+    .header form input[type="text"],
+    .header form input[type="submit"] {
+        flex: 1; /* Permitir que los elementos del formulario crezcan */
+        margin: 0; /* Eliminar márgenes para maximizar el espacio */
+        padding: 8px; /* Reducir el padding para ahorrar espacio */
+        font-size: 0.9em; /* Reducir el tamaño de la fuente del texto del formulario */
+    }
+
+    .header form {
+        display: flex; /* Asegurar que los elementos del formulario estén en línea */
+        flex-wrap: nowrap; /* Evitar que los elementos del formulario se envuelvan */
+    }
+
+    .logout-link {
+        padding: 8px 5px; /* Reducir el padding para ahorrar espacio */
+        justify-content: flex-end; /* Alinear el enlace de cierre de sesión al final del contenedor */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .header img {
+        max-width: 100%; /* Reducir el tamaño del logotipo si es necesario */
+        height: auto;
+    }
+}
+
+
+/* Pequeños dispositivos (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+
+
+  @media (max-width: 768px) {
+    .producto-card h2 {
+        font-size: 1rem; /* Tamaño de fuente más pequeño para dispositivos más pequeños */
+    }
+
+    .producto-card p {
+        font-size: 0.8rem; /* Tamaño de fuente más pequeño para dispositivos más pequeños */
+    }
+    
+}
+
+  @media (max-width: 768px) {
+    .producto-card h2 {
+        font-size: 1rem; /* Tamaño de fuente más pequeño para dispositivos más pequeños */
+    }
+
+    .producto-card p {
+        font-size: 0.8rem; /* Tamaño de fuente más pequeño para dispositivos más pequeños */
+    }
+    
+}
+
+@media (max-width: 768px) {
+    .producto-card button {
+        font-size: 0.9rem; /* Tamaño de fuente más pequeño para dispositivos más pequeños */
+        padding: 0.5rem 0.9rem; /* Padding más pequeño para dispositivos más pequeños */
+    }
+}
+
 @media (min-width: 768px) {
     .producto-link {
       flex-basis: calc(50% - 40px); /* Ajustar para 2 columnas */
     }
+
   }
   
   /* Tabletas en modo landscape y desktops (992px and up) */
@@ -338,7 +517,4 @@ footer {
       flex-basis: calc(25% - 40px); /* Ajustar para 4 columnas */
     }
   }
-
-
-
-
+}

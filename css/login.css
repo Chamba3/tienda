@@ -115,4 +115,25 @@ body {
     /* If you want to make any specific changes for larger desktop screens, add them here */
 }
 
+/* Para dispositivos muy pequeños (teléfonos en modo retrato, menos de 576px) */
+@media (min-width: 576px) {
+    .login-box h2 {
+        font-size: 20px; /* Texto más pequeño para dispositivos pequeños */
+    }
+
+    .login-button, .input-group input {
+        font-size: 14px; /* Texto más pequeño para botones y entradas */
+    }
+}
+
+/* Texto responsivo */
+body {
+    font-size: 16px; /* Tamaño base para el texto */
+}
+
+@media (min-width: 768px) {
+    body {
+        font-size: 18px; /* Tamaño de texto más grande para tabletas y dispositivos más grandes */
+    }
+}
 

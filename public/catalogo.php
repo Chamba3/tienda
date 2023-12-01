@@ -29,6 +29,8 @@ $(document).ready(function() {
 });
 </script>
 
+<?php $categoriaActiva = 'catalogo'; ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,8 +38,7 @@ $(document).ready(function() {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tienda en Línea - Catálogo de Productos</title>
     <link rel="stylesheet" type="text/css" href="../css/catalogo.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
    
 </head>
 <body>
@@ -49,7 +50,18 @@ $(document).ready(function() {
             <input type="text" name="buscar" placeholder="Buscar productos...">
             <input type="submit" value="Buscar">
         </form>
-        <a class="logout-link" href="logout.php">cerrar sesión</a>
+        <a href="logout.php" class="logout-link">
+            <i class="fa fa-sign-out-alt"></i> <!-- Ícono de FontAwesome -->
+        </a>
+    </div>
+
+    <div class="toolbar">
+        <a href="catalogo.php" class="toolbar-btn <?php echo ($categoriaActiva == 'catalogo') ? 'active' : ''; ?>">Catalogo</a>
+        <a href="categoria_telefonos.php" class="toolbar-btn <?php echo ($categoriaActiva == 'telefonos') ? 'active' : ''; ?>">Teléfonos</a>
+        <a href="categoria_fundas.php" class="toolbar-btn <?php echo ($categoriaActiva == 'fundas') ? 'active' : ''; ?>">Fundas</a>
+        <a href="categoria_cargadores.php" class="toolbar-btn <?php echo ($categoriaActiva == 'cargadores') ? 'active' : ''; ?>">Cargadores</a>
+        <a href="categoria_cables.php" class="toolbar-btn <?php echo ($categoriaActiva == 'cables') ? 'active' : ''; ?>">Cables</a>
+        <a href="categoria_auriculares.php" class="toolbar-btn <?php echo ($categoriaActiva == 'auriculares') ? 'active' : ''; ?>">Auriculares</a>
     </div>
 
     <div class="catalogo-container">

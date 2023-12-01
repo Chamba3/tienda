@@ -6,7 +6,6 @@ if (!isset($_SESSION['carrito'])) {
 }
 ?>
 
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
 $(document).ready(function() {
@@ -30,46 +29,57 @@ $(document).ready(function() {
 });
 </script>
 
+<?php $categoriaActiva = 'auriculares'; ?>
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resultados de Búsqueda - Tienda en Línea</title>
+    <title>Tienda en Línea - Catálogo de Productos</title>
     <link rel="stylesheet" type="text/css" href="../css/catalogo.css">
-    <link rel="stylesheet" type="text/css" href="../css/catalogo.css">    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
+    
+   
 </head>
 <body>
-    
-
-<div class="header">
-    <img src="../images/logo.png" alt="imagen">
-    <form action="busqueda.php" method="GET">
-        <input type="text" name="buscar" placeholder="Buscar productos..." value="<?php echo isset($_GET['buscar']) ? $_GET['buscar'] : ''; ?>">
-        <input type="submit" value="Buscar">
-    </form>
+    <div class="header">
+        <div class="img-logo">
+            <img src="../images/logo.png" alt="imagen">
+        </div>
+        <form action="../public/busqueda.php" method="GET">
+            <input type="text" name="buscar" placeholder="Buscar productos...">
+            <input type="submit" value="Buscar">
+        </form>
         <a href="logout.php" class="logout-link">
             <i class="fa fa-sign-out-alt"></i> <!-- Ícono de FontAwesome -->
         </a>
-</div>
+    </div>
 
-<a href="catalogo.php" class="btn-volver">
-        <i class="fas fa-arrow-left"></i> Volver al Catálogo
-    </a>
-<div class="catalogo-container">
-    <?php
-    require_once('../connection/db.php');
+    <div class="toolbar">
+        <a href="catalogo.php" class="toolbar-btn <?php echo ($categoriaActiva == 'catalogo') ? 'active' : ''; ?>">Catalogo</a>
+        <a href="categoria_telefonos.php" class="toolbar-btn <?php echo ($categoriaActiva == 'telefonos') ? 'active' : ''; ?>">Teléfonos</a>
+        <a href="categoria_fundas.php" class="toolbar-btn <?php echo ($categoriaActiva == 'fundas') ? 'active' : ''; ?>">Fundas</a>
+        <a href="categoria_cargadores.php" class="toolbar-btn <?php echo ($categoriaActiva == 'cargadores') ? 'active' : ''; ?>">Cargadores</a>
+        <a href="categoria_cables.php" class="toolbar-btn <?php echo ($categoriaActiva == 'cables') ? 'active' : ''; ?>">Cables</a>
+        <a href="categoria_auriculares.php" class="toolbar-btn <?php echo ($categoriaActiva == 'auriculares') ? 'active' : ''; ?>">Auriculares</a>
+    </div>
 
-    if(isset($_GET['buscar']) && !empty($_GET['buscar'])) {
-        $busqueda = $conn->real_escape_string($_GET['buscar']);
-        $query = "SELECT * FROM productos WHERE nombre LIKE '%$busqueda%' OR descripcion LIKE '%$busqueda%'";
+    <div class="catalogo-container">
+        <?php
+        require_once('../connection/db.php');
+
+       // Asumiendo que el nombre de la categoría de teléfonos es 'telefonos' en la tabla 'categorias'
+        $categoriaAuriculares = 'auriculares';
+
+        $query = "SELECT productos.* FROM productos JOIN categorias ON productos.id_categoria = categorias.id_categoria WHERE categorias.nombre = '$categoriaAuriculares'";
         $result = $conn->query($query);
 
         if ($result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 $productoEnCarrito = isset($_SESSION['carrito'][$row['id']]) ? $_SESSION['carrito'][$row['id']]['cantidad'] : 0;
+                
                 echo "<a href='detalle_producto.php?id=" . $row['id'] . "' class='producto-link'>";
                 echo "<div class='producto-card'>";
                 echo '<img src="' . $row['url'] . '" alt="' . $row['nombre'] . '">';
@@ -82,31 +92,30 @@ $(document).ready(function() {
                 }
                 echo "<button class='add-to-cart-btn' data-id='" . $row['id'] . "'>Agregar al Carrito</button>";
                 echo "</div>";
+                echo "</a>";
             }
         } else {
-            echo "No sé encontraron resultados de tu busqueda'" . $busqueda . "'.";
+            echo "No hay productos disponibles en el catálogo.";
         }
-    } else {
-        echo "Por favor, ingresa una palabra clave para buscar.";
-    }
 
-    $conn->close();
-    ?>
-</div>
-<footer>
-        <div class="footer-content">
-            <p>&copy; 2023 PhoneGear. Todos los derechos reservados.</p>
-            <div class="social-icons">
-                <a href="#"><i class="fa fa-facebook"></i></a>
-                <a href="#"><i class="fa fa-twitter"></i></a>
-                <a href="#"><i class="fa fa-instagram"></i></a>
-            </div>
-            <p>Contacto: PhoneGear@gmail.com</p>
-            </div>
-<!-- Aquí puedes agregar el footer, similar al de tu archivo anterior -->
-    <a href="carrito.php" class="carrito-btn">
+        $conn->close();
+        ?>
+           <a href="carrito.php" class="carrito-btn">
         <i class="fas fa-shopping-cart"></i>
         <span class="carrito-cantidad"><?php echo array_sum(array_column($_SESSION['carrito'], 'cantidad')); ?></span>
     </a>
+
+    </div>
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2023 PhoneGear. Todos los derechos reservados.</p>
+            <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p>Contacto: PhoneGear@gmail.com</p>
+        </div>
+    </footer>
 </body>
 </html>

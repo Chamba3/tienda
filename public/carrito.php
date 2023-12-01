@@ -12,18 +12,17 @@
         <i class="fas fa-arrow-left"></i> Volver al Catálogo
     </a>
 
-
     <?php
     session_start();
 
     // Verifica si el carrito de compras del usuario está vacío o no
     $carrito_vacio = empty($_SESSION['carrito']);
-
     if (!$carrito_vacio) {
         // Muestra los productos en el carrito
         echo "<table>";
         echo "<tr>";
         echo "<th>Producto</th>";
+        echo "<th>Descripción</th>";
         echo "<th>Cantidad</th>";
         echo "<th>Precio Unitario</th>";
         echo "<th>Total</th>";
@@ -34,6 +33,8 @@
         foreach ($_SESSION['carrito'] as $producto_id => $producto) {
             echo "<tr>";
             echo "<td>" . $producto['nombre'] . "</td>";
+            // Añadir chequeo para 'descripcion'
+            echo "<td>" . (isset($producto['descripcion']) ? $producto['descripcion'] : 'Sin descripción') . "</td>";
             echo "<td>" . $producto['cantidad'] . "</td>";
             echo "<td>$" . $producto['precio_unitario'] . "</td>";
             echo "<td>$" . ($producto['cantidad'] * $producto['precio_unitario']) . "</td>";
@@ -51,6 +52,7 @@
 
         // Calcula el total del carrito
         $total_carrito = 0;
+        
         foreach ($_SESSION['carrito'] as $producto) {
             $total_carrito += $producto['cantidad'] * $producto['precio_unitario'];
         }
@@ -70,24 +72,29 @@
     }
     ?>
 
-<script src="https://www.paypal.com/sdk/js?client-id=Aea6PpK3-1fLwlHkTolC6urviWivZDgkcTdAOzm4jW_yCl973lRlNScyCnWyZIRDjr3oxZwyL9TcFVwq"></script>
-    <script>
-        paypal.Buttons({
-            createOrder: function(data, actions) {
-                return actions.order.create({
-                    purchase_units: [{
-                        amount: {
-                            value: '<?php echo $total_carrito; ?>' // Usa el total del carrito aquí
-                        }
-                    }]
-                });
-            },
-            onApprove: function(data, actions) {
-                return actions.order.capture().then(function(details) {
-                    window.location.href = "confirmacion_compra.php";
-                });
-            }
-        }).render('#paypal-button-container');
-    </script>
+<script src="https://www.paypal.com/sdk/js?client-id=AbawqCQxMQkkhzucAzv8L9n8codS-ftTi4p3YlfM3tOS1I--Tv3NYmWM5M4U_uRcxJ3cvatTNtI76UmP"></script>
+<script>
+    paypal.Buttons({
+        createOrder: function(data, actions) {
+            return actions.order.create({
+                purchase_units: [{
+                    amount: {
+                        value: '<?php echo $total_carrito; ?>'
+                    }
+                }]
+            });
+        },
+        onApprove: function(data, actions) {
+            return actions.order.capture().then(function(details) {
+                // Aquí obtienes el correo electrónico del cliente
+                var emailCliente = details.payer.email_address;
+
+                // Puedes guardar el correo en la sesión o enviarlo a tu script de procesamiento
+                // Por ejemplo, usando AJAX o redirigiendo con el correo como parámetro
+                window.location.href = "procesar_compra.php?email=" + emailCliente;
+            });
+        }
+    }).render('#paypal-button-container');
+</script>
 </body>
 </html>
