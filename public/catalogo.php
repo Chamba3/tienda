@@ -46,6 +46,7 @@ $(document).ready(function() {
         <div class="img-logo">
             <img src="../images/logo.png" alt="imagen">
         </div>
+        
         <form action="../public/busqueda.php" method="GET">
             <input type="text" name="buscar" placeholder="Buscar productos...">
             <input type="submit" value="Buscar">
