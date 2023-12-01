@@ -6,14 +6,38 @@ if (!isset($_SESSION['carrito'])) {
     $_SESSION['carrito'] = array();
 }
 
-$product_id = $_GET['id'];
-$query = "SELECT * FROM productos WHERE id = $product_id";
-$result = $conn->query($query);
+if (isset($_GET['id']) && $_GET['id'] != '') {
+    $product_id = $conn->real_escape_string($_GET['id']);
 
-if ($result->num_rows > 0) {
-    $product = $result->fetch_assoc();
+    // Usa el nombre correcto de la columna. Cambia 'id' si el nombre de tu columna es diferente
+    $query = "SELECT * FROM productos WHERE id = '$product_id'";
+    $result = $conn->query($query);
+
+    if ($result->num_rows > 0) {
+        $product = $result->fetch_assoc();
+
+        // Continúa con el procesamiento...
+        if (isset($product['id_categoria'])) {
+            $category_id = $product['id_categoria'];
+
+            if ($category_id !== null) {
+                $relatedQuery = "SELECT * FROM productos WHERE id_categoria = '$category_id' AND id != '$product_id' LIMIT 2";
+                $relatedResult = $conn->query($relatedQuery);
+
+                if ($relatedResult->num_rows > 0) {
+                    $related_products = $relatedResult->fetch_all(MYSQLI_ASSOC);
+                }
+            }
+        }
+    } else {
+        echo "Producto no encontrado.";
+    }
+} else {
+    echo "ID de producto no especificado.";
 }
 ?>
+
+
 
 <!DOCTYPE html>
 <html>
@@ -47,6 +71,7 @@ if ($result->num_rows > 0) {
     </script>
 </head>
 <body>
+    
     <div class="header">
         <img src="../images/logo.png" alt="imagen">
         <form action="../public/busqueda.php" method="GET">
@@ -58,27 +83,43 @@ if ($result->num_rows > 0) {
     <a href="catalogo.php" class="btn-volver">
         <i class="fas fa-arrow-left"></i> Volver al Catálogo
     </a>
-    
+</div>
+<div class="content-wrapper">
     <div class="product-detail-container">
-        <?php
-        if (isset($product)) {
-        ?>
+        <?php if (isset($product)) { ?>
             <div class="product-image">
-                <img src="<?php echo $product['url']; ?>" alt="<?php echo $product['nombre']; ?>">
+                <img src="<?php echo htmlspecialchars($product['url']); ?>" alt="<?php echo htmlspecialchars($product['nombre']); ?>">
             </div>
             <div class="product-info">
-                <h1><?php echo $product['nombre']; ?></h1>
-                <p><?php echo $product['descripcion']; ?></p>
-                <p>Precio: $<?php echo $product['precio']; ?></p>
-                <button class="add-to-cart-btn" data-id="<?php echo $product['id']; ?>">Agregar al carrito</button>
+                <h1><?php echo htmlspecialchars($product['nombre']); ?></h1>
+                <p><?php echo htmlspecialchars($product['info']); ?></p>
+                <p>Precio: $<?php echo htmlspecialchars($product['precio']); ?></p>
+                <button class="add-to-cart-btn" data-id="<?php echo htmlspecialchars($product['id']); ?>">Agregar al carrito</button>
             </div>
-        <?php
-        } else {
-            echo "Producto no encontrado.";
-        }
-        $conn->close();
-        ?>
+    <?php } else {
+        echo "Producto no encontrado.";
+    } ?>
     </div>
+</div>
+<div class="related-products-container">
+    <h2>Productos Relacionados</h2>
+    <?php
+    if (isset($related_products)) {
+        foreach ($related_products as $related) {
+            echo "<div class='related-product'>";
+            echo "<div class='producto-card'>";
+            echo "<img src='" . htmlspecialchars($related['url']) . "' alt='" . htmlspecialchars($related['nombre']) . "' class='related-product-image'>";
+            echo "<h3>" . htmlspecialchars($related['nombre']) . "</h3>";
+            echo "<p>" . htmlspecialchars($related['descripcion']) . "</p>";
+            echo "<p>Precio: $" . htmlspecialchars($related['precio']) . "</p>";
+            echo "</div>";
+            echo "</div>";
+        }
+    } else {
+        echo "<p>No hay productos relacionados.</p>";
+    }
+    ?>
+</div>
 
     <a href="carrito.php" class="carrito-btn">
         <i class="fas fa-shopping-cart"></i>

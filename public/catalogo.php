@@ -37,14 +37,15 @@ $(document).ready(function() {
     <title>Tienda en Línea - Catálogo de Productos</title>
     <link rel="stylesheet" type="text/css" href="../css/catalogo.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
-   
+
+
 </head>
 <body>
     <div class="header">
         <div class="img-logo">
             <img src="../images/logo.png" alt="imagen">
         </div>
+        
         <form action="../public/busqueda.php" method="GET">
             <input type="text" name="buscar" placeholder="Buscar productos...">
             <input type="submit" value="Buscar">
