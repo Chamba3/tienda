@@ -72,19 +72,42 @@ if (isset($_GET['id']) && $_GET['id'] != '') {
 </head>
 <body>
     
-    <div class="header">
-        <img src="../images/logo.png" alt="imagen">
-        <form action="../public/busqueda.php" method="GET">
+<div class="header">
+        <div class="img-logo">
+            <img src="../images/logo.png" alt="imagen">
+        </div>
+
+    <!-- Right part with user info, logout, and search -->
+    <div class="header-right">
+        <!-- User info and logout link container -->
+        <div class="user-logout-container">
+            <?php if(isset($_SESSION['usuario_nombre'])): ?>
+                <div class="user-info">
+                    <i class="fa fa-user"></i>
+                    <span><?php echo htmlspecialchars($_SESSION['usuario_nombre']); ?></span>
+                </div>
+            <?php endif; ?>
+            <!-- Logout -->
+        <a href="logout.php" class="logout-link">
+            <i class="fa fa-sign-out-alt"></i> <!-- Ícono de FontAwesome -->
+        </a>
+        </div>
+        
+        <!-- Search form -->
+        <form action="../public/busqueda.php" method="GET" class="search-form">
             <input type="text" name="buscar" placeholder="Buscar productos...">
             <input type="submit" value="Buscar">
         </form>
     </div>
+</div>
 
     <a href="catalogo.php" class="btn-volver">
         <i class="fas fa-arrow-left"></i> Volver al Catálogo
     </a>
 </div>
+
 <div class="content-wrapper">
+    <!-- Contenedor de Detalles del Producto -->
     <div class="product-detail-container">
         <?php if (isset($product)) { ?>
             <div class="product-image">
@@ -96,43 +119,43 @@ if (isset($_GET['id']) && $_GET['id'] != '') {
                 <p>Precio: $<?php echo htmlspecialchars($product['precio']); ?></p>
                 <button class="add-to-cart-btn" data-id="<?php echo htmlspecialchars($product['id']); ?>">Agregar al carrito</button>
             </div>
-    <?php } else {
-        echo "Producto no encontrado.";
-    } ?>
+        <?php } else { ?>
+            <p>Producto no encontrado.</p>
+        <?php } ?>
     </div>
-</div>
-<div class="related-products-container">
-    <h2>Productos Relacionados</h2>
-    <?php
-    if (isset($related_products)) {
-        foreach ($related_products as $related) {
-            echo "<div class='related-product'>";
-            echo "<div class='producto-card'>";
-            echo "<img src='" . htmlspecialchars($related['url']) . "' alt='" . htmlspecialchars($related['nombre']) . "' class='related-product-image'>";
-            echo "<h3>" . htmlspecialchars($related['nombre']) . "</h3>";
-            echo "<p>" . htmlspecialchars($related['descripcion']) . "</p>";
-            echo "<p>Precio: $" . htmlspecialchars($related['precio']) . "</p>";
-            echo "</div>";
-            echo "</div>";
-        }
-    } else {
-        echo "<p>No hay productos relacionados.</p>";
-    }
-    ?>
-</div>
 
+    <!-- Contenedor de Productos Relacionados -->
+    <div class="related-products-container">
+    <h2>Productos Relacionados</h2>
+    <div class="cards-container"> <!-- Contenedor para todas las tarjetas -->
+        <?php if (isset($related_products)) { ?>
+            <?php foreach ($related_products as $related) { ?>
+                <div class='producto-card'>
+                    <img src="<?php echo htmlspecialchars($related['url']); ?>" alt="<?php echo htmlspecialchars($related['nombre']); ?>" class='related-product-image'>
+                    <h3><?php echo htmlspecialchars($related['nombre']); ?></h3>
+                    <p><?php echo htmlspecialchars($related['descripcion']); ?></p>
+                    <p>Precio: $<?php echo htmlspecialchars($related['precio']); ?></p>
+                </div>
+            <?php } ?>
+        <?php } else { ?>
+            <p>No hay productos relacionados.</p>
+        <?php } ?>
+    </div> 
     <a href="carrito.php" class="carrito-btn">
         <i class="fas fa-shopping-cart"></i>
         <span class="carrito-cantidad"><?php echo array_sum(array_column($_SESSION['carrito'], 'cantidad')); ?></span>
     </a>
+</div>
+
+</div>
     
-    <footer>
+<footer>
         <div class="footer-content">
             <p>&copy; 2023 PhoneGear. Todos los derechos reservados.</p>
             <div class="social-icons">
-                <a href="#"><i class="fa fa-facebook"></i></a>
-                <a href="#"><i class="fa fa-twitter"></i></a>
-                <a href="#"><i class="fa fa-instagram"></i></a>
+            <a href="https://www.facebook.com/profile.php?id=61553923086966&locale=es_LA"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/phonegearsv/"><i class="fab fa-instagram"></i></a>
             </div>
             <p>Contacto: PhoneGear@gmail.com</p>
         </div>

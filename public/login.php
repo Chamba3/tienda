@@ -15,19 +15,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     require_once(__DIR__ . '/../connection/db.php');
 
-    $query = "SELECT id, contrasena FROM usuarios WHERE email = ?";
+    // Incluye el nombre en tu consulta
+    $query = "SELECT id, nombre, contrasena FROM usuarios WHERE email = ?";
     $stmt = $conn->prepare($query);
     $stmt->bind_param("s", $email);
     $stmt->execute();
-    $stmt->store_result();
+    $result = $stmt->get_result();
 
-    if ($stmt->num_rows == 1) {
-        $stmt->bind_result($usuario_id, $contrasena_hash);
-        $stmt->fetch();
+    if ($result->num_rows == 1) {
+        $user_row = $result->fetch_assoc();
+        // Ahora tienes disponible el 'nombre' en $user_row
+        $usuario_id = $user_row['id'];
+        $nombre_usuario = $user_row['nombre'];
+        $contrasena_hash = $user_row['contrasena'];
+        
+        // Asigna el nombre del usuario a la sesión
+        $_SESSION['usuario_nombre'] = $nombre_usuario;
 
         // Comparar la contraseña ingresada con la almacenada
         if (password_verify($contrasena, $contrasena_hash)) {
             $_SESSION['usuario_id'] = $usuario_id;
+            
+            // Redirige al catálogo
             header("Location: catalogo.php");
             exit;
         } else {
@@ -36,7 +45,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         $error_message = "Usuario no encontrado. Regístrate si eres nuevo.";
     }
-    
     
     $stmt->close(); 
     $conn->close(); 

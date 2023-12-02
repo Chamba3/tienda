@@ -4,6 +4,7 @@ session_start();
 if (!isset($_SESSION['carrito'])) {
     $_SESSION['carrito'] = array();
 }
+
 ?>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -29,6 +30,7 @@ $(document).ready(function() {
 });
 </script>
 
+
 <?php $categoriaActiva = 'catalogo'; ?>
 
 <!DOCTYPE html>
@@ -46,16 +48,31 @@ $(document).ready(function() {
         <div class="img-logo">
             <img src="../images/logo.png" alt="imagen">
         </div>
-        
-        <form action="../public/busqueda.php" method="GET">
-            <input type="text" name="buscar" placeholder="Buscar productos...">
-            <input type="submit" value="Buscar">
-        </form>
+
+    <!-- Right part with user info, logout, and search -->
+    <div class="header-right">
+        <!-- User info and logout link container -->
+        <div class="user-logout-container">
+            <?php if(isset($_SESSION['usuario_nombre'])): ?>
+                <div class="user-info">
+                    <i class="fa fa-user"></i>
+                    <span><?php echo htmlspecialchars($_SESSION['usuario_nombre']); ?></span>
+                </div>
+            <?php endif; ?>
+            <!-- Logout -->
         <a href="logout.php" class="logout-link">
             <i class="fa fa-sign-out-alt"></i> <!-- Ícono de FontAwesome -->
         </a>
+        </div>
+        
+        <!-- Search form -->
+        <form action="../public/busqueda.php" method="GET" class="search-form">
+            <input type="text" name="buscar" placeholder="Buscar productos...">
+            <input type="submit" value="Buscar">
+        </form>
     </div>
-
+</div>
+    <button class="mobile-menu-btn">☰ Menú</button>
     <div class="toolbar">
         <a href="catalogo.php" class="toolbar-btn <?php echo ($categoriaActiva == 'catalogo') ? 'active' : ''; ?>">Catalogo</a>
         <a href="categoria_telefonos.php" class="toolbar-btn <?php echo ($categoriaActiva == 'telefonos') ? 'active' : ''; ?>">Teléfonos</a>
@@ -106,12 +123,23 @@ $(document).ready(function() {
         <div class="footer-content">
             <p>&copy; 2023 PhoneGear. Todos los derechos reservados.</p>
             <div class="social-icons">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.facebook.com/profile.php?id=61553923086966&locale=es_LA"><i class="fab fa-facebook-f"></i></a>
             <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.instagram.com/phonegearsv/"><i class="fab fa-instagram"></i></a>
             </div>
             <p>Contacto: PhoneGear@gmail.com</p>
         </div>
     </footer>
 </body>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    var menuButton = document.querySelector('.mobile-menu-btn');
+    var toolbar = document.querySelector('.toolbar');
+
+    menuButton.addEventListener('click', function() {
+        toolbar.classList.toggle('active');
+    });
+});
+
+</script>
 </html>

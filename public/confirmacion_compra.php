@@ -23,9 +23,9 @@
         <div class="footer-content">
             <p>&copy; 2023 PhoneGear. Todos los derechos reservados.</p>
             <div class="social-icons">
-                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="https://www.facebook.com/profile.php?id=61553923086966&locale=es_LA"><i class="fa fa-facebook"></i></a>
                 <a href="#"><i class="fa fa-twitter"></i></a>
-                <a href="#"><i class="fa fa-instagram"></i></a>
+                <a href="https://www.instagram.com/phonegearsv/"><i class="fa fa-instagram"></i></a>
             </div>
             <p>Contacto: PhoneGear@gmail.com</p>
         </div>

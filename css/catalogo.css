@@ -1,9 +1,11 @@
-
 body {
     font-family: Arial, Helvetica, sans-serif;
-    margin: 0;
     padding: 0;
     background-color: #f5f5f5;
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Header Estilizado */
@@ -21,6 +23,17 @@ body {
     z-index: 10; /* Esto es para que el header se mantenga sobre la toolbar al hacer scroll */
 }
 
+.header-right {
+     display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Aligns items to the right */
+}
+
+.user-logout-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px; /* Adds space between this container and the search bar */
+}
 .header img {
     max-width: 100%;
     height: auto;
@@ -34,16 +47,17 @@ body {
 
 .logout-link {
     width: 10%;  
-    background-color: #fdfffd;
-    color:#4a0df3;
-    font-size: 1.2em; /* Aumentar tamaño de fuente */
-    padding: 8px 10px;
+    color:#ffffff;
+    font-size: 1.7em; /* Aumentar tamaño de fuente */
+    padding: 15px 30px;
     border-radius: 30px;
     text-decoration: none;
     transition: background-color 0.5s;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-right: 1rem; 
+    order: 2;
 }
 
 .logout-link:hover {
@@ -123,6 +137,7 @@ h1 {
     padding: 0 10%;
     gap: 20px; 
     padding-top: 40px;
+    flex: 1 0 auto;
 }
 
 
@@ -222,6 +237,7 @@ footer {
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
+    padding: 20px 0;
 }
 
 .footer-content p {
@@ -257,11 +273,14 @@ footer {
 .header form {
     display: flex;
     gap: 10px; /* Espacio entre el campo de texto y el botón */
+    order: 3; /* Ensures that the search form is the last item */
 }
 
 /* Estilo para el campo de texto de búsqueda */
 .header form input[type="text"] {
-    padding: 8px 12px;
+    margin-top: 20px;
+    width: 400px;
+    padding: 10px 30px;
     border-radius: 30px;
     border: none; /* Quitar borde */
     outline: none; /* Quitar outline al hacer foco */
@@ -275,10 +294,12 @@ footer {
 
 /* Estilo para el botón de búsqueda */
 .header form input[type="submit"] {
+    margin-top: 20px;
     background-color: #fdfffd;
     color: #4a0df3;
     font-size: 1.2em;
-    padding: 8px 12px;
+    padding: 11px 40px;
+    margin-left: 5px;
     border-radius: 30px;
     border: none; /* Quitar borde */
     cursor: pointer; /* Cambiar cursor a mano */
@@ -292,6 +313,22 @@ footer {
 .header form input[type="submit"]:hover {
     background-color: #f5f5f5;
 }
+
+/* Estilos para el nombre del usuario en el header */
+.user-info {
+    display: flex;
+    align-items: center;
+    color: rgb(255, 255, 255);  /*sto al color que prefieras */
+    font-weight: bold;
+    margin-right: 2rem; /* Espaciado a la derecha */
+    order: 1;
+    margin-right: 10px;
+}
+
+.user-info .fa-user {
+    margin-right: 20px;
+}
+
 
 .producto-link {
     flex-basis: calc(33.33% - 60px);
@@ -370,6 +407,8 @@ footer {
 }
 
 .btn-volver {
+    margin-top: 20px;
+    width: 200px; 
     display: inline-block;
     background: linear-gradient(to right, #5f2d8d, #3642af);
     color: white;
@@ -391,8 +430,8 @@ footer {
 
 @media (max-width: 576px) {
     .logout-link {
-        font-size: 0.8em; /* Reducir tamaño de fuente */
-        padding: 2px; /* Reducir padding */
+        font-size: 0.5em; /* Reducir tamaño de fuente */
+        padding:  1px; /* Reducir padding */
         width: auto; /* Ajustar ancho */
     }
     
@@ -422,44 +461,110 @@ footer {
 }
 
 
-/* Header Estilizado para dispositivos pequeños */
 @media (max-width: 576px) {
     .header {
-        padding: 0.5em 2%; /* Reducir el padding del contenedor del header */
-        justify-content: flex-start; /* Alinear los elementos al inicio para evitar centrado forzado */
-        flex-direction: row; /* Asegurar que todos los elementos estén en la misma fila */
-    }
-
-    .header form,
-    .logout-link {
-        flex: 1; /* Dar a cada elemento la capacidad de crecer */
-        margin-right: 10px; /* Añadir un margen a la derecha para separar los elementos */
-    }
-
-    .header form input[type="text"],
-    .header form input[type="submit"] {
-        flex: 1; /* Permitir que los elementos del formulario crezcan */
-        margin: 0; /* Eliminar márgenes para maximizar el espacio */
-        padding: 8px; /* Reducir el padding para ahorrar espacio */
-        font-size: 0.9em; /* Reducir el tamaño de la fuente del texto del formulario */
-    }
-
-    .header form {
-        display: flex; /* Asegurar que los elementos del formulario estén en línea */
-        flex-wrap: nowrap; /* Evitar que los elementos del formulario se envuelvan */
-    }
-
-    .logout-link {
-        padding: 8px 5px; /* Reducir el padding para ahorrar espacio */
-        justify-content: flex-end; /* Alinear el enlace de cierre de sesión al final del contenedor */
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        padding: 10px; /* Ajusta el padding para dar espacio */
+        align-items: center; /* Centra los elementos verticalmente */
+        text-align: center; /* Centra el texto */
     }
 
     .header img {
-        max-width: 100%; /* Reducir el tamaño del logotipo si es necesario */
-        height: auto;
+        width: 60%; /* Ajusta el ancho del logo */
+        margin-bottom: 10px; /* Espacio entre el logo y los elementos debajo */
+    }
+
+    .header-right {
+        width: 100%; /* Toma el ancho completo */
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Alinea los elementos al centro */
+    }
+
+    .user-info {
+        order: 1;
+        display: flex;
+        width: 100%; /* Toma el ancho completo */
+        justify-content: space-between; /* Separa los elementos entre sí */
+        padding: 10px 0; /* Añade padding vertical para separar de otros elementos */
+    }
+
+    .logout-link {
+        font-size: 1em; /* Ajusta el tamaño de la fuente como sea necesario */
+        padding: 5px 5px; /* Aumenta el padding para hacer el botón más grande */
+        display: flex; /* Asegura que los elementos internos se centren */
+        align-items: center; /* Centra los elementos verticalmente */
+        justify-content: center; /* Centra los elementos horizontalmente */
+        margin-top: 1px; /* Añade margen en la parte superior si es necesario */
+        border-radius: 5px; /* Ajusta para bordes redondeados */
+        /* Añade otros estilos como sombras o transiciones si deseas */
+    }
+
+    /* Si estás utilizando un icono dentro de .logout-link, como FontAwesome, puedes ajustar su tamaño también */
+    .logout-link i {
+        font-size: 1.5em; /* Ajusta el tamaño del icono */
+    }
+    .header form {
+        order: 3;
+        width: 100%; /* Toma el ancho completo */
+        display: flex;
+        flex-direction: row; /* Coloca los elementos en una fila */
+        justify-content: center; /* Centra los elementos horizontalmente */
+        align-items: center; /* Alinea los elementos verticalmente */
+        font-size: 10px;
+    }
+
+    .header form input[type="text"] {
+        width: 70%; /* Asigna un ancho mayor al campo de texto */
+        margin-right: 5px; /* Añade un margen a la derecha del campo de texto */
+    }
+
+    .header form input[type="submit"] {
+        min-width: 80px; /* Ancho mínimo para el botón */
+        padding: 11px 34px; /* Padding suficiente para el contenido */
+        font-size: 10px;
+        text-overflow: ellipsis; /* Añade puntos suspensivos si el texto se corta */
+        /* ... */
+    }
+}
+
+
+
+
+
+/* Para tablets y dispositivos con anchos menores a 768px */
+@media (max-width: 768px) {
+    footer {
+        padding: 1em 5%;
+    }
+
+    .footer-content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-content p,
+    .social-icons a,
+    .footer-content .social-icons {
+        margin-bottom: 0.5em;
+    }
+
+    .social-icons {
+        order: 1;
+        margin-top: 10px;
+    }
+}
+
+/* Para teléfonos móviles y dispositivos con anchos menores a 576px */
+@media (max-width: 576px) {
+    .footer-content {
+        padding-bottom: 20px;
+    }
+
+    .footer-content p,
+    .social-icons a,
+    .footer-content .social-icons {
+        margin-bottom: 0.3em;
     }
 }
 
@@ -517,4 +622,80 @@ footer {
       flex-basis: calc(25% - 40px); /* Ajustar para 4 columnas */
     }
   }
+}
+  
+
+/* Estilos para iPads en portrait y landscape */
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) {
+  
+  .toolbar-btn {
+    padding: 5px 10px; /* Reducir el padding */
+    font-size: 0.9em; /* Reducir el tamaño de la fuente */
+  }
+  
+  /* Puedes necesitar ajustar también el margen y el espacio entre botones */
+  .toolbar {
+    gap: 10px; /* Ajustar el espacio entre los botones si es necesario */
+  }
+}
+
+/* Puedes querer hacer un ajuste más fino para cada orientación */
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (orientation: landscape) {
+  
+}
+
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1024px) 
+  and (orientation: portrait) {
+  }
+
+  /* Media query para pantallas pequeñas (por ejemplo, menos de 768px) */
+@media (max-width: 768px) {
+    .toolbar {
+        flex-direction: column; /* Los elementos se apilan verticalmente */
+        padding: 10px; /* Reducir el padding para pantallas pequeñas */
+    }
+
+    .toolbar-btn {
+        padding: 10px; /* Reducir el padding de los botones */
+        text-align: center; /* Alinear el texto al centro */
+        width: 100%; /* Hacer que los botones ocupen todo el ancho disponible */
+        margin-bottom: 5px; /* Añadir un pequeño margen entre botones */
+    }
+}
+
+
+/* Estilos para el botón del menú móvil */
+.mobile-menu-btn {
+    display: none; /* Oculto por defecto */
+    background-color: #673ab7; /* Color de fondo */
+    color: white; /* Color del texto */
+    padding: 10px 20px; /* Padding */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    font-size: 1.2em; /* Tamaño del texto */
+    cursor: pointer; /* Estilo del cursor */
+    margin: 10px; /* Margen */
+}
+
+/* Mostrar el botón solo en pantallas pequeñas y ajustar la barra de herramientas */
+@media (max-width: 768px) {
+    .mobile-menu-btn {
+        display: block; /* Muestra el botón en pantallas pequeñas */
+    }
+
+    .toolbar {
+        display: none; /* Oculta la barra de herramientas por defecto en pantallas pequeñas */
+        flex-direction: column; /* Alinea los elementos verticalmente */
+    }
+
+    .toolbar.active {
+        display: flex; /* Muestra la barra de herramientas cuando se activa */
+    }
 }

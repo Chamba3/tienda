@@ -39,25 +39,54 @@ $(document).ready(function() {
     <link rel="stylesheet" type="text/css" href="../css/catalogo.css">
     <link rel="stylesheet" type="text/css" href="../css/catalogo.css">    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
 
 </head>
 <body>
     
 
 <div class="header">
-    <img src="../images/logo.png" alt="imagen">
-    <form action="busqueda.php" method="GET">
-        <input type="text" name="buscar" placeholder="Buscar productos..." value="<?php echo isset($_GET['buscar']) ? $_GET['buscar'] : ''; ?>">
-        <input type="submit" value="Buscar">
-    </form>
+        <div class="img-logo">
+            <img src="../images/logo.png" alt="imagen">
+        </div>
+
+    <!-- Right part with user info, logout, and search -->
+    <div class="header-right">
+        <!-- User info and logout link container -->
+        <div class="user-logout-container">
+            <?php if(isset($_SESSION['usuario_nombre'])): ?>
+                <div class="user-info">
+                    <i class="fa fa-user"></i>
+                    <span><?php echo htmlspecialchars($_SESSION['usuario_nombre']); ?></span>
+                </div>
+            <?php endif; ?>
+            <!-- Logout -->
         <a href="logout.php" class="logout-link">
             <i class="fa fa-sign-out-alt"></i> <!-- Ícono de FontAwesome -->
         </a>
+        </div>
+        
+        <!-- Search form -->
+        <form action="../public/busqueda.php" method="GET" class="search-form">
+            <input type="text" name="buscar" placeholder="Buscar productos...">
+            <input type="submit" value="Buscar">
+        </form>
+    </div>
 </div>
 
-<a href="catalogo.php" class="btn-volver">
+<div class="toolbar">
+        <a href="catalogo.php" class="toolbar-btn <?php echo ($categoriaActiva == 'catalogo') ? 'active' : ''; ?>">Catalogo</a>
+        <a href="categoria_telefonos.php" class="toolbar-btn <?php echo ($categoriaActiva == 'telefonos') ? 'active' : ''; ?>">Teléfonos</a>
+        <a href="categoria_fundas.php" class="toolbar-btn <?php echo ($categoriaActiva == 'fundas') ? 'active' : ''; ?>">Fundas</a>
+        <a href="categoria_cargadores.php" class="toolbar-btn <?php echo ($categoriaActiva == 'cargadores') ? 'active' : ''; ?>">Cargadores</a>
+        <a href="categoria_cables.php" class="toolbar-btn <?php echo ($categoriaActiva == 'cables') ? 'active' : ''; ?>">Cables</a>
+        <a href="categoria_auriculares.php" class="toolbar-btn <?php echo ($categoriaActiva == 'auriculares') ? 'active' : ''; ?>">Auriculares</a>
+    </div>
+
+    <a href="catalogo.php" class="btn-volver">
         <i class="fas fa-arrow-left"></i> Volver al Catálogo
     </a>
+
 <div class="catalogo-container">
     <?php
     require_once('../connection/db.php');
@@ -97,9 +126,9 @@ $(document).ready(function() {
         <div class="footer-content">
             <p>&copy; 2023 PhoneGear. Todos los derechos reservados.</p>
             <div class="social-icons">
-                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="https://www.facebook.com/profile.php?id=61553923086966&locale=es_LA"><i class="fa fa-facebook"></i></a>
                 <a href="#"><i class="fa fa-twitter"></i></a>
-                <a href="#"><i class="fa fa-instagram"></i></a>
+                <a href="https://www.instagram.com/phonegearsv/"><i class="fa fa-instagram"></i></a>
             </div>
             <p>Contacto: PhoneGear@gmail.com</p>
             </div>
